@@ -61,10 +61,7 @@ remotes::install_github("CDCgov/rst", build_vignettes = TRUE)
 ```
 
 ## Beta
-This package is currently in the beta stage. Each public function and dataset has documentation to help orient you to using the package, along with an introductory vignette to walk you through a simple analysis using the example data. For debugging purposes, private functions can be accessed with RST:::problem_function(). In the future we plan to include:
-- Vignettes covering each aspect of using the package;
-- A vignette going over the model itself, along with references to the original paper that the model/code is based off of; and
-- More features to make using the package as accessible as possible.
+This package is currently in the beta stage. Each public function and dataset has documentation to help orient you to using the package, along with an introductory vignette to walk you through a simple analysis using the example data. For debugging purposes, private functions can be accessed with RST:::problem_function().
 
 ## Thanks!
 Thanks for checking out the RST package. I hope you find it useful in your spatiotemporal modeling! Please feel free to give feedback on bugs, ways to make the package more accessible to use, and features you'd like to see added to the package.
