@@ -27,6 +27,7 @@ To install the RST package, a few dependent packages are needed first. RST depen
 ##### Packages
 - [Rcpp](https://cran.r-project.org/package=Rcpp): The most important package for RST. RST relies heavily on C++ code for efficiency. Rcpp is a package that allows integration of C++ code into R.
 - [RcppArmadillo](https://cran.r-project.org/package=RcppArmadillo): This is an addon for Rcpp that facilitates matrix and array manipulation.
+- [RcppArmadillo](https://cran.r-project.org/package=RcppDist): This is an addon for Rcpp that allows the use of specialized distributions.
 - [abind](https://cran.r-project.org/package=abind): A package designed to combine multidimensional arrays. Necessary for the concatenation of large arrays when gathering samples.
 - [knitr](https://cran.r-project.org/package=knitr): Facilitates creation of package vignettes.
 ##### Programs
@@ -37,7 +38,7 @@ The RST package can be easily installed with a few lines of R code. From the R c
 
 ```sh
 # Install dependent packages
-install.packages(c("Rcpp", "RcppArmadillo", "abind", "knitr"))
+install.packages(c("Rcpp", "RcppArmadillo", "RcppDist", "abind", "knitr"))
 # Install RTools
 install.packages("installr") # optional: RTools can be downloaded and installed manually from the above URL
 installr::install.Rtools()
