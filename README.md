@@ -8,9 +8,9 @@ The Rate Stabilizing Tool (RST) package is a tool that uses a Bayesian spatiotem
 To install the RST package, a few dependent packages are needed first. RST depends on the following:
 
 ##### Packages
-- [Rcpp](https://cran.r-project.org/package=Rcpp): The most important package for RST. RST relies heavily on C++ code for efficiency. Rcpp is a package that allows integration of C++ code into R.
+- [Rcpp](https://cran.r-project.org/package=Rcpp): Rcpp is a package that allows integration of C++ code into R.
 - [RcppArmadillo](https://cran.r-project.org/package=RcppArmadillo): This is an addon for Rcpp that facilitates matrix and array manipulation.
-- [RcppDist](https://cran.r-project.org/package=RcppDist): This is an addon for Rcpp that allows the use of specialized distributions.
+- [RcppDist](https://cran.r-project.org/package=RcppDist): This is an addon for Rcpp that allows the generation of values for specialized distributions.
 - [abind](https://cran.r-project.org/package=abind): A package designed to combine multidimensional arrays. Necessary for the concatenation of large arrays when gathering samples.
 - [knitr](https://cran.r-project.org/package=knitr): Allows for creation of package vignettes.
 ##### Programs
@@ -22,13 +22,15 @@ From the R console, make sure that all the necessary dependencies are installed 
 ```sh
 # Install dependent packages
 install.packages(c("Rcpp", "RcppArmadillo", "RcppDist", "abind", "knitr"))
+```
+```sh
 # Install RTools
-install.packages("installr") # optional for Windows users: RTools can be downloaded and installed manually from the above URL
+install.packages("installr") # Optional for Windows users. RTools can also be downloaded and installed manually from the above URL.
 installr::install.Rtools()
 ```
-Then, the package can be easily installed from GitHub:
+Then, the package can be installed from GitHub:
 ```sh
-install.packages("remotes")
+install.packages("remotes") # Optional if you already have an R package which can install from GitHub
 remotes::install_github("CDCgov/RST", build_vignettes = TRUE)
 ```
 If this is your first time using the RST R package, check the introductory vignette to learn how to use the package:
