@@ -1,0 +1,163 @@
+---
+title: "01: An Introduction to the RST Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{01: An Introduction to the RST Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+## Overview {#sec-overview}
+
+The `RST` package is a tool that uses a Bayesian spatiotemporal model in conjunction with C++ to help you quickly and easily generate spatially smoothed estimates for your spatial data. This document introduces you to the basics of the `RST` package and shows you how to apply the basic functions to the included example data to get small area estimates.
+
+## Datasets {#sec-datasets}
+
+`RST` comes with three datasets: `miheart`, `miadj`, and `mishp`. `miheart` and `miadj` are related to the necessary components of an MSTCAR model, and `mishp` is a shapefile that helps you map your results. To run an MSTCAR model, two components are necessary:
+
+-   Event counts for a parameter of interest, stratified by region, group, and time period, along with the corresponding population counts. These data may be binomial- or Poisson-distributed. The example dataset is binomial-distributed myocardial infarction deaths in six age groups from 1979-1988 in Michigan. Reference `miheart` to see how this data looks or `?miheart` for more information on the dataset. For more information on preparing your event data, read `vignette("RST-event")`.
+
+-   An adjacency structure for your data. This is, in essence, a dataset that tells `RST` which regions are neighbors with each other. `RST` will accept a `list` of vectors whose indices represent the neighbors of each region. Reference `miadj` for an example adjacency structure list. For more information on preparing your adjacency data, read `vignette("RST-adj")`.
+
+Some quick notes about data setup:
+
+-   Event/population data must be organized in a very specific manner. The `RST` models can only accept 3-dimensional arrays: spatial regions must be on the rows, socio/demographic groups must be on the columns, and time periods must be on the matrix slices. Moreover, your event data's regions should be listed in the same order in your adjacency structure data.
+
+-   Every region must have at least one neighbor. Moreover, the adjacency structures must be listed in the same order as your count data.
+
+## Functions {#sec-functions}
+
+`RST` comes with a set of functions to generate small area estimates from your dataset. Here is a brief overview of the basic functions and their purpose:
+
+-   `initialize_model()`: Inputs data and model specifics and creates a local folder with all associated files to prepare for sample generation;
+-   `run_sampler()`: The Gibbs sampler function which saves your model and its samples to a local folder;
+-   `load_samples()`: Imports samples generated with `run_sampler()` into your R session; and
+-   `get_medians()`: Calculates median estimates loaded in by `load_samples()`.
+
+## Example Model - `initialize_model()` {#sec-init}
+
+With an understanding of the example datasets and the functions, we can start running our first model. The example datasets are set up for us to run out-of-the-box:
+
+```{r eval = FALSE}
+library(RST)
+initialize_model(
+  name = "my_test_model",
+  dir = getwd(),
+  data = miheart,
+  adjacency = miadj
+)
+```
+
+Here, we use the `initialize_model()` function to specify our model. `initialize_model()` accepts a few different arguments in this case:
+
+-   The `name` argument specifies the directory where the model data lives;
+-   The `dir` argument specifies the directory where the model folder will be saved;
+-   The `data` argument specifies our event data; and
+-   The `adjacency` argument specifies our adjacency structure.
+
+`initialize_model()` creates a folder named `my_test_model` in the directory specified in `dir` containing folders that will hold batches of outputs for each parameter update, along with a set of `.Rds` files associated with model configuration. Nothing here is saved in the R environment because MSTCAR models can quickly become so large that it's impossible to hold the entire sample in RAM. Therefore, all of the data related to running the model is saved locally.
+
+Note that `initialize_model()` accepts more arguments than are used here, but these are the only ones that are needed to get started. Also note that when we run the model, we get a couple of messages telling us certain priors and initial values were automatically generated. Priors and initial values can be specified manually, but this is outside the scope of this vignette. There will also be checks performed on the input data: if something is wrong, it will tell you what is wrong and how to fix it. For a full list of diagnostic errors and what they mean, read `vignette("RST-troubleshooting")`.
+
+Finally, you may notice a plot was generated during model setup. This is one last double-check to make sure the data are set up correctly before running the model, showing the total event and population count for each year of data. If the number of datapoints does not match up to the number of years in your dataset or if the changes in values over time don't make a ton of sense, you may need to double-check your data input.
+
+If you want to learn more about the `initialize_model()` function, read `vignette("RST-init")`.
+
+## Example Model - `run_sampler()` {#sec-samples}
+
+Once we have our model object set up, we can start getting samples. This is the heart of the `RST` package and what allows us to gather our final rate estimates. To get your samples, simply specify the name of the model and the directory:
+
+```{r eval = FALSE}
+run_sampler(name = "my_test_model", dir = getwd())
+```
+
+The `run_sampler()` function takes information saved in `my_test_model` and uses it to run the `RST` Gibbs sampler. The `RST` package works by generating samples in batches, then saving these batches locally inside of `my_test_model` to be retrieved once the model is finished running. Generating samples in batches in samples accomplishes two primary goals: it helps facilitate the tuning of the underlying MCMC algorithm and it helps avoid computational burdern by only holding a fraction of the total samples in memory at any given time. `RST` runs 6,000 iterations split into 60 batches of size 100 each. All batches are thinned for every 10 iterations by default, as the `thetas` tend to exhibit autocorrelation. Moreover, thinning saves space when writing samples to the hard drive, as batches from larger models can balloon to gigabytes of size before thinning. Console outputs will show when the last batch was saved and the current iteration count of the model. The `run_sampler()` function also saves a few `.Rds` files containing all the different information regarding the model to the `my_test_model` folder in case you need to reload your model at a later date. If the model crashes for any reason or R closes while the model is being run, the model will keep track of the current batch and pick back up where it left off when it is re-run.
+
+If you want to learn more about the `run_sampler()` function, read `vignette("RST-samples")`.
+
+## Example Model - `load_samples()` {#sec-loadsamples}
+
+After `run_sampler()` is done running (i.e., generates 6000 iterations) and your samples have been saved to `mod_test`, you can bring the samples into R using the `load_samples()` function. We can pull in samples from any of our available parameters, but let's pull in the outputs for `theta`, our rate estimates:
+
+```{r eval = FALSE}
+output = load_data(
+  name = "my_test_model",
+  dir = getwd(),
+  burn = 2000,
+  param = "theta"
+)
+```
+
+Here, the `load_samples()` function brings in samples from the model `my_test_model` in the directory `dir`, only loading in iterations after `burn`. The `burn` argument works to ensure that the estimates we get are sound by specifying a period where the model has a bit of time to "figure itself out" before gathering samples. In total, we have pulled in (6000 - 2000) / 10 = 400 samples, as the sampler only saves every 10 iterations. To learn more about post-Gibbs sampler diagnostics, such as sufficient sample size, read `vignette("RST-diags")`.
+
+If you want to learn more about the `load_samples()` function, read `vignette("RST-samples")`.
+
+## Example Model - `get_medians()` {#sec-getmedians}
+
+With our output loaded into R, we can finally get our estimates. We put our `output` object into the `get_medians()` function:
+
+```{r eval = FALSE}
+medians = get_medians(output)
+```
+
+This creates an `array` object with median estimates for `theta` along each year, county, and region:
+
+```{r eval = FALSE}
+medians
+```
+
+For this type of mortality data, it is common to observe the rates per 100,000 population. Therefore, in this case we multiply the rates by 100,000 prior to interpretation:
+
+```{r eval = FALSE}
+medians * 1e5
+```
+
+You can also inspect rates by age group, year, or region:
+
+```{r eval = FALSE}
+medians["26005", "65-74",       ] * 1e5 # explore between time periods
+medians[       , "65-74", "1979"] * 1e5 # explore between counties
+medians["26005",        , "1979"] * 1e5 # explore between age groups
+```
+
+For more information about the median estimates, read `vignette("RST-medians")`.
+
+## Illustrative Example: Mapping Estimates
+
+With our estimates finally in a form we can use, we can get a better picture of geographic patterns with a map, which can easily be made using `ggplot` (or your favorite mapping package). Let's see how the estimates were smoothed:
+
+```{r eval = FALSE}
+library(tidyverse)
+# Original Myocardial Infarction Death Rates in MI, Ages 55-64, 1979
+raw_65_74 = (data$Y / data$n * 1e5)[, "65-74", "1979"]
+ggplot(mishp) +
+  geom_sf(aes(fill = raw_65_74)) +
+  labs(
+    title = "Raw Myocardial Infarction Death Rates in MI, Ages 65-74, 1979",
+    fill = "Deaths per 100,000"
+  ) +
+  scale_fill_viridis_c() +
+  theme_void()
+# Spatially Smoothed MI Death Rates in MI
+est_65_74 = medians[, "65-74", "1979"] * 1e5
+ggplot(mishp) +
+  geom_sf(aes(fill = est_65_74)) +
+  labs(
+    title = "Smoothed Myocardial Infarction Death Rates in MI, Ages 65-74, 1979",
+    fill = "Deaths per 100,000"
+  ) +
+  scale_fill_viridis_c() +
+  theme_void()
+```
+
+This map helps us see how `RST` smooths rates. First, notice how the range of the two plots are different: the smoothed map has a smaller range because `RST` stabilizes high and low extreme values which are usually caused by low population counts. Also, notice how the transitions between high-rate and low-rate regions are more gradual on the smoothed map. This is a consequence of using neighboring regions to inform and stabilize estimates.
+
+From here, we can get a better idea of how these maps contrast. For example, on the first map, the largest region of interest is the middle portion of the Lower Peninsula (LP), but on the smoothed map, much of this area has attenuated rates. On the flip side, many areas in the Upper Peninsula (UP) have low rates on the first map, but we can see on the smoothed map that the places with higher rates on the UP actually go further eastward and the higher-rate areas on the LP are focused around counties on the Saginaw Bay, indicating that these areas may require more attention than previously thought. These are the kinds of inferences that can be made using estimates generated by the `RST` package and the main motivation for running this spatiotemporal model.
+
+## Closing Thoughts
+
+This vignette introduces you to inputting data into the `initialize_model()` function, getting samples with the `run_sampler()` function, loading those samples into R with the `load_samples()` function, and finally making a map with estimates gathered with the `get_medians()` function. What we've discussed here is just scratching the surface of the `RST` package. Other package vignettes will dive deeper into the intricacies of each component of the package, into the construction of the model itself, and into investigating the reliability of estimates. All of these things together will ensure you get the most out of using the `RST` package.

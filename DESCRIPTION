@@ -1,0 +1,28 @@
+Package: RST
+Type: Package
+Title: Rate Stabilizing Tool: Gibbs Samplers for CAR-based Spatiotemporal Models
+Version: 0.9
+Date: 2024-09-17
+Author: David DeLara
+Maintainer: David DeLara <sfq1@cdc.gov>
+Description: This package takes Poisson or Binomial discrete spatial data and runs a Gibbs sampler for a variety of Spatiotemporal CAR models. Also provides tools to load output and get median estimates.
+License: GPL (>=2)
+Encoding: UTF-8
+LinkingTo: 
+	Rcpp, 
+	RcppArmadillo,
+        RcppDist
+Suggests: 
+	knitr,
+	ggplot2,
+	rmarkdown
+Imports:
+	abind,
+	Rcpp,
+	RcppArmadillo,
+	RcppDist
+Depends:
+	R (>= 2.10)
+LazyData: true
+RoxygenNote: 7.3.2
+VignetteBuilder: knitr
