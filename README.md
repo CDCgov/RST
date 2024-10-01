@@ -1,24 +1,7 @@
 # The RST R Package
 ## Introduction
 
-The Rate Stabilizing Tool (RST) package is a tool that uses a Bayesian spatiotemporal model in conjunction with C++ to help you quickly and easily generate spatially smoothed estimates for your spatial data. For the ArcGIS Plugin, visit the [RST ArcGIS Plugin webpage](https://www.cdc.gov/dhdsp/maps/gisx/rst.html).
-
-### What is an MSTCAR model?
-
-A Multivariate Spatiotemporal Conditional Auto-Regressive (MSTCAR) model is a Bayesian spatiotemporal model that generates spatially smoothed estimates across discrete regions. It is used to stabilize estimates in regions with low population counts, thereby bringing the inherent spatial structure of your event data to the forefront. It does this by taking information from various aspects of the data:
-- The adjacency structure of your data. Neighboring regions consolidate information to stabilize estimates.
-- Sociodemographic groups. The MSTCAR model also lends rate information from the sociodemographic groups included in the data.
-- Time. The MSTCAR model helps to reveal trends in regions across time that may not be evident from the raw data.
-
-RST is an R package is used to better understand binomial- or Poisson-distributed spatial count data by calculating spatially smoothed estimates from a Gibbs sampler.
-
-### Motivation and Features
-
-It is often very difficult to use an MSTCAR model in practice because it is 1. Very difficult to build without prior knowledge of spatiotemporal Bayesian hierarchical models, and 2. The complexity of the model makes it very computationally intensive. Because of this, There are several key ideas taken into consideration when creating the RST package:
-
-- Designed to simply import count/population data for discrete regions and receive estimates smoothed by region, sociodemographic groups, and time periods.
-- Designed to be easy-to-use and accessible, even for people without experience with Bayesian hierarchical models.
-- Designed to be *fast*! Runs more than 10 times faster than equivalent models written only in R.
+The Rate Stabilizing Tool (RST) package is a tool that uses a Bayesian spatiotemporal model in conjunction with C++ to help you quickly and easily generate spatially smoothed estimates for your spatiotemporal small area data. For the ArcGIS Plugin, visit the [RST ArcGIS Plugin webpage](https://www.cdc.gov/dhdsp/maps/gisx/rst.html).
 
 ## Installation
 
