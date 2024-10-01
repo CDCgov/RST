@@ -46,7 +46,7 @@ installr::install.Rtools()
 Then, the package can be easily installed from GitHub:
 ```sh
 install.packages("remotes")
-remotes::install_github("CDCgov/rst", build_vignettes = TRUE)
+remotes::install_github("CDCgov/RST", build_vignettes = TRUE)
 ```
 If this is your first time using the RST R package, check the introductory vignette to learn how to use the package:
 ```sh
