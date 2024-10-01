@@ -1,75 +1,71 @@
-# CDCgov GitHub Organization Open Source Project Template
+# The RST R Package
+## Introduction
 
-**Template for clearance: This project serves as a template to aid projects in starting up and moving through clearance procedures. To start, create a new repository and implement the required [open practices](open_practices.md), train on and agree to adhere to the organization's [rules of behavior](rules_of_behavior.md), and [send a request through the create repo form](https://forms.office.com/Pages/ResponsePage.aspx?id=aQjnnNtg_USr6NJ2cHf8j44WSiOI6uNOvdWse4I-C2NUNk43NzMwODJTRzA4NFpCUk1RRU83RTFNVi4u) using language from this template as a Guide.**
+The Rate Stabilizing Tool (RST) package is a tool that uses a Bayesian spatiotemporal model in conjunction with C++ to help you quickly and easily generate spatially smoothed estimates for your spatial data. For the ArcGIS Extension, visit the [Rate Stabilizing Tool webpage](https://www.cdc.gov/dhdsp/maps/gisx/rst.html).
 
-**General disclaimer** This repository was created for use by CDC programs to collaborate on public health related projects in support of the [CDC mission](https://www.cdc.gov/about/organization/mission.htm).  GitHub is not hosted by the CDC, but is a third party website used by CDC and its partners to share information and collaborate on software. CDC use of GitHub does not imply an endorsement of any one particular service, product, or enterprise. 
+### What is an MSTCAR model?
 
-## Access Request, Repo Creation Request
+A Multivariate Spatiotemporal Conditional Auto-Regressive (MSTCAR) model is a Bayesian spatiotemporal model that generates spatially smoothed estimates across discrete regions. It is used to stabilize estimates in regions with low population counts, thereby bringing the inherent spatial structure of your event data to the forefront. It does this by taking information from various aspects of the data:
+- The adjacency structure of your data. Neighboring regions consolidate information to stabilize estimates.
+- Sociodemographic groups. The MSTCAR model also lends rate information from the sociodemographic groups included in the data.
+- Time. The MSTCAR model helps to reveal trends in regions across time that may not be evident from the raw data.
 
-* [CDC GitHub Open Project Request Form](https://forms.office.com/Pages/ResponsePage.aspx?id=aQjnnNtg_USr6NJ2cHf8j44WSiOI6uNOvdWse4I-C2NUNk43NzMwODJTRzA4NFpCUk1RRU83RTFNVi4u) _[Requires a CDC Office365 login, if you do not have a CDC Office365 please ask a friend who does to submit the request on your behalf. If you're looking for access to the CDCEnt private organization, please use the [GitHub Enterprise Cloud Access Request form](https://forms.office.com/Pages/ResponsePage.aspx?id=aQjnnNtg_USr6NJ2cHf8j44WSiOI6uNOvdWse4I-C2NUQjVJVDlKS1c0SlhQSUxLNVBaOEZCNUczVS4u).]_
+RST is an R package is used to better understand binomial- or Poisson-distributed spatial count data by calculating spatially smoothed estimates from a Gibbs sampler.
 
-## Related documents
+### Motivation and Features
 
-* [Open Practices](open_practices.md)
-* [Rules of Behavior](rules_of_behavior.md)
-* [Thanks and Acknowledgements](thanks.md)
-* [Disclaimer](DISCLAIMER.md)
-* [Contribution Notice](CONTRIBUTING.md)
-* [Code of Conduct](code-of-conduct.md)
+It is often very difficult to use an MSTCAR model in practice because it is 1. Very difficult to build without prior knowledge of spatiotemporal Bayesian hierarchical models, and 2. The complexity of the model makes it very computationally intensive. Because of this, There are several key ideas taken into consideration when creating the RST package:
 
-## Overview
+- Designed to simply import count/population data for discrete regions and receive estimates smoothed by region, sociodemographic groups, and time periods.
+- Designed to be easy-to-use and accessible, even for people without experience with Bayesian hierarchical models.
+- Designed to be *fast*! Runs more than 10 times faster than equivalent models written only in R.
 
-Describe the purpose of your project. Add additional sections as necessary to help collaborators and potential collaborators understand and use your project.
-  
-## Public Domain Standard Notice
-This repository constitutes a work of the United States Government and is not
-subject to domestic copyright protection under 17 USC § 105. This repository is in
-the public domain within the United States, and copyright and related rights in
-the work worldwide are waived through the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).
-All contributions to this repository will be released under the CC0 dedication. By
-submitting a pull request you are agreeing to comply with this waiver of
-copyright interest.
+## Installation
 
-## License Standard Notice
-The repository utilizes code licensed under the terms of the Apache Software
-License and therefore is licensed under ASL v2 or later.
+To install the RST package, a few dependent packages are needed first. RST depends on the following:
 
-This source code in this repository is free: you can redistribute it and/or modify it under
-the terms of the Apache Software License version 2, or (at your option) any
-later version.
+##### Packages
+- [Rcpp](https://cran.r-project.org/package=Rcpp): The most important package for RST. RST relies heavily on C++ code for efficiency. Rcpp is a package that allows integration of C++ code into R.
+- [RcppArmadillo](https://cran.r-project.org/package=RcppArmadillo): This is an addon for Rcpp that facilitates matrix and array manipulation.
+- [RcppDist](https://cran.r-project.org/package=RcppDist): This is an addon for Rcpp that facilitates sampling of multivariate distributions.
+- [spdep](https://cran.r-project.org/package=spdep): A package related to spatial dependence. Contains several tools that help articulate the spatial relationships of shapefiles.
+- [knitr](https://cran.r-project.org/package=knitr): Facilitates creation of package vignettes.
+##### Programs
+- [RTools](https://cran.r-project.org/bin/windows/Rtools/): C++ compiler for R. Necessary for Rcpp and its dependencies.
 
-This source code in this repository is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the Apache Software License for more details.
+### Installation Instructions
+The RST package can be easily installed with a few lines of R code. From the R console, make sure that all the necessary dependencies are installed by running the following lines:
 
-You should have received a copy of the Apache Software License along with this
-program. If not, see http://www.apache.org/licenses/LICENSE-2.0.html
+```sh
+# Install dependent packages
+install.packages(c("spdep", "Rcpp", "RcppArmadillo", "RcppDist", "knitr"))
+# Install RTools
+install.packages("installr") # optional: RTools can be downloaded and installed manually from the above URL
+installr::install.Rtools()
+```
+Then, the package can be easily installed from GitHub:
+```sh
+install.packages("remotes")
+remotes::install_github("CDCgov/rst", build_vignettes = TRUE)
+```
+If this is your first time using the RST R package, check the introductory vignette to learn how to use the package:
+```sh
+vignette("RST")
+```
 
-The source code forked from other open source projects will inherit its license.
+### Updates
+Updating the RST package is fairly simple. All that has to be done is remove the package from R, restart R, and re-install from GitHub:
+```sh
+remove.packages("RST")
+# Restart R to allow package installation
+remotes::install_github("CDCgov/rst", build_vignettes = TRUE)
+```
 
-## Privacy Standard Notice
-This repository contains only non-sensitive, publicly available data and
-information. All material and community participation is covered by the
-[Disclaimer](DISCLAIMER.md)
-and [Code of Conduct](code-of-conduct.md).
-For more information about CDC's privacy policy, please visit [http://www.cdc.gov/other/privacy.html](https://www.cdc.gov/other/privacy.html).
+## Beta
+This package is currently in the beta stage. Each public function and dataset has documentation to help orient you to using the package, along with an introductory vignette to walk you through a simple analysis using the example data. For debugging purposes, private functions can be accessed with RST:::problem_function(). In the future we plan to include:
+- Vignettes covering each aspect of using the package;
+- A vignette going over the model itself, along with references to the original paper that the model/code is based off of; and
+- More features to make using the package as accessible as possible.
 
-## Contributing Standard Notice
-Anyone is encouraged to contribute to the repository by [forking](https://help.github.com/articles/fork-a-repo)
-and submitting a pull request. (If you are new to GitHub, you might start with a
-[basic tutorial](https://help.github.com/articles/set-up-git).) By contributing
-to this project, you grant a world-wide, royalty-free, perpetual, irrevocable,
-non-exclusive, transferable license to all users under the terms of the
-[Apache Software License v2](http://www.apache.org/licenses/LICENSE-2.0.html) or
-later.
-
-All comments, messages, pull requests, and other submissions received through
-CDC including this GitHub page may be subject to applicable federal law, including but not limited to the Federal Records Act, and may be archived. Learn more at [http://www.cdc.gov/other/privacy.html](http://www.cdc.gov/other/privacy.html).
-
-## Records Management Standard Notice
-This repository is not a source of government records, but is a copy to increase
-collaboration and collaborative potential. All government records will be
-published through the [CDC web site](http://www.cdc.gov).
-
-## Additional Standard Notices
-Please refer to [CDC's Template Repository](https://github.com/CDCgov/template) for more information about [contributing to this repository](https://github.com/CDCgov/template/blob/main/CONTRIBUTING.md), [public domain notices and disclaimers](https://github.com/CDCgov/template/blob/main/DISCLAIMER.md), and [code of conduct](https://github.com/CDCgov/template/blob/main/code-of-conduct.md).
+## Thanks!
+Thanks for checking out the RST package. I hope you find it useful in your spatiotemporal modeling! Please feel free to give feedback on bugs, ways to make the package more accessible to use, and features you'd like to see added to the package.
