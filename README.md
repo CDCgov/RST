@@ -12,18 +12,18 @@ To install the RST package, a few dependent packages are needed first. RST depen
 - [RcppArmadillo](https://cran.r-project.org/package=RcppArmadillo): This is an addon for Rcpp that facilitates matrix and array manipulation.
 - [RcppDist](https://cran.r-project.org/package=RcppDist): This is an addon for Rcpp that allows the use of specialized distributions.
 - [abind](https://cran.r-project.org/package=abind): A package designed to combine multidimensional arrays. Necessary for the concatenation of large arrays when gathering samples.
-- [knitr](https://cran.r-project.org/package=knitr): Facilitates creation of package vignettes.
+- [knitr](https://cran.r-project.org/package=knitr): Allows for creation of package vignettes.
 ##### Programs
-- [RTools](https://cran.r-project.org/bin/windows/Rtools/): C++ compiler for R. Necessary for Rcpp and its dependencies.
+- [RTools](https://cran.r-project.org/bin/windows/Rtools/) (Windows Only): C++ compiler for R. Necessary for Rcpp and its dependencies. Only necessary on Windows devices, as Linux and Mac devices have native C++ compilers.
 
 ### Installation Instructions
-The RST package can be easily installed with a few lines of R code. From the R console, make sure that all the necessary dependencies are installed by running the following lines:
+From the R console, make sure that all the necessary dependencies are installed by running the following lines:
 
 ```sh
 # Install dependent packages
 install.packages(c("Rcpp", "RcppArmadillo", "RcppDist", "abind", "knitr"))
 # Install RTools
-install.packages("installr") # optional: RTools can be downloaded and installed manually from the above URL
+install.packages("installr") # optional for Windows users: RTools can be downloaded and installed manually from the above URL
 installr::install.Rtools()
 ```
 Then, the package can be easily installed from GitHub:
@@ -37,15 +37,12 @@ vignette("RST")
 ```
 
 ### Updates
-Updating the RST package is fairly simple. All that has to be done is remove the package from R, restart R, and re-install from GitHub:
+To update RST, remove the package from R, restart R, and re-install from GitHub:
 ```sh
 remove.packages("RST")
 # Restart R to allow package installation
 remotes::install_github("CDCgov/rst", build_vignettes = TRUE)
 ```
-
-## Beta
-This package is currently in the beta stage. Each public function and dataset has documentation to help orient you to using the package, along with an introductory vignette to walk you through a simple analysis using the example data. For debugging purposes, private functions can be accessed with RST:::problem_function().
 
 ## Thanks!
 Thanks for checking out the RST package. I hope you find it useful in your spatiotemporal modeling! Please feel free to give feedback on bugs, ways to make the package more accessible to use, and features you'd like to see added to the package.
