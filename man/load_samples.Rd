@@ -4,12 +4,7 @@
 \alias{load_samples}
 \title{Load MCMC samples}
 \usage{
-load_samples(
-  name,
-  dir,
-  param = c("theta", "beta", "Z", "G", "Ag", "tau2", "rho"),
-  burn = 2000
-)
+load_samples(name, dir, param = "theta", burn = 2000)
 }
 \arguments{
 \item{name}{Name of model}
@@ -19,6 +14,8 @@ load_samples(
 \item{param}{Which parameter samples to load}
 
 \item{burn}{Numer of burn-in samples to discard}
+
+\item{time}{TIme period of data to pull from. `last` gathers final time period data and `all` gathers all years of data.}
 }
 \description{
 Load MCMC samples

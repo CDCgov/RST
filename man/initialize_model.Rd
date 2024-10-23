@@ -11,7 +11,10 @@ initialize_model(
   adjacency,
   inits = NULL,
   priors = NULL,
+  model = c("mstcar", "ucar", "ustcar", "mcar"),
   method = c("binom", "pois"),
+  m0 = 3,
+  A = NULL,
   rho_up = FALSE,
   impute_lb = 1,
   impute_ub = 9,
@@ -34,7 +37,11 @@ initialize_model(
 
 \item{method}{Run model with either Binomial data or Poisson data.}
 
-\item{rho_up}{Controls whether rho update is performed}
+\item{m0}{Baseline neighbor count by region}
+
+\item{A}{Describes how intensely to smooth each group/time of regions}
+
+\item{rho_up}{Controls whether rho update is performed for USTCAR or MSTCAR models}
 
 \item{impute_lb}{If counts between lb and ub are suppressed for privacy reasons, impute_lb is lower bound}
 

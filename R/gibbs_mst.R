@@ -5,7 +5,7 @@
 #' @importFrom RcppArmadillo fastLm
 #'
 #' @noRd
-gibbs_mst = function(name, dir) {
+gibbs_mst = function(name, dir, .show_plots) {
   data = readRDS(paste0(dir, name, "/data.Rds"))
   Y    = data$Y
   n    = data$n
@@ -105,26 +105,26 @@ gibbs_mst = function(name, dir) {
       }
 
       ##### update beta ####
-      beta = update_beta(beta, theta, Z, tau2, island_region)
+      beta = mst_update_beta(beta, theta, Z, tau2, island_region)
 
       #### update Z ####
-      Z = update_Z(Z, G, theta, beta, rho, tau2, adjacency, num_adj, island_region, island_id)
+      Z = mst_update_Z(Z, G, theta, beta, rho, tau2, adjacency, num_adj, island_region, island_id)
 
       #### update G ####
-      G = update_G(G, Z, Ag, rho, G_df, adjacency, num_island)
+      G = mst_update_G(G, Z, Ag, rho, G_df, adjacency, num_island)
 
       #### update Ag ####
-      Ag = update_Ag(Ag, G, Ag_scale, G_df, Ag_df)
+      Ag = mst_update_Ag(Ag, G, Ag_scale, G_df, Ag_df)
 
       ##### update tau2 ####
-      tau2 = update_tau2(tau2, theta, beta, Z, tau_a, tau_b, island_id)
+      tau2 = mst_update_tau2(tau2, theta, beta, Z, tau_a, tau_b, island_id)
 
       #### update theta ####
-      theta = update_theta(theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method)
+      theta = mst_update_theta(theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method)
 
       #### update rho ####
       if (rho_up) {
-        rho = update_rho(rho, r_accept, G, Z, rho_a, rho_b, rho_sd, adjacency, num_island)
+        rho = mst_update_rho(rho, r_accept, G, Z, rho_a, rho_b, rho_sd, adjacency, num_island)
       }
 
       #### Save outputs ####
@@ -173,32 +173,34 @@ gibbs_mst = function(name, dir) {
     if (rho_up) {
       saveRDS(output$rho, paste0(dir, name, "/rho/", "rho_out_", batch, ".Rds"))
     }
+    if (.show_plots) {
+      # Output some of the estimates for plotting purposes
+      plots$beta  = c(plots$beta,  output$beta [1, 1, 1, ])
+      plots$theta = c(plots$theta, output$theta[1, 1, 1, ])
+      plots$Z     = c(plots$Z,     output$Z    [1, 1, 1, ])
+      plots$tau2  = c(plots$tau2,  output$tau2 [1,       ])
+      plots$G     = c(plots$G,     output$G    [1, 1, 1, ])
+      plots$Ag    = c(plots$Ag,    output$Ag   [1, 1,    ])
+      if (rho_up) {
+        plots$rho = c(plots$rho, output$rho[1, ])
+      }
 
-    # Output some of the estimates for plotting purposes
-    plots$beta  = c(plots$beta,  output$beta [1, 1, 1, ])
-    plots$theta = c(plots$theta, output$theta[1, 1, 1, ])
-    plots$Z     = c(plots$Z,     output$Z    [1, 1, 1, ])
-    plots$tau2  = c(plots$tau2,  output$tau2 [1,       ])
-    plots$G     = c(plots$G,     output$G    [1, 1, 1, ])
-    plots$Ag    = c(plots$Ag,    output$Ag   [1, 1,    ])
-    if (rho_up) {
-      plots$rho = c(plots$rho, output$rho[1, ])
+      grid = c(2, 3)
+      if (rho_up) grid = c(2, 4)
+      graphics::par(mfrow = grid)
+      burn = min(floor(total / 20), 200)
+      its  = burn:(total / 10)
+      plot(its * 10, plots$theta[its], type = "l", main = "theta")
+      plot(its * 10, plots$beta[its], type = "l", main = "beta")
+      plot(its * 10, plots$tau2[its], type = "l", main = "tau2")
+      plot(its * 10, plots$G[its], type = "l", main = "G")
+      plot(its * 10, plots$Z[its], type = "l", main = "Z")
+      plot(its * 10, plots$Ag[its], type = "l", main = "Ag")
+      if (rho_up) {
+        plot(its * 10, plots$rho[its], type = "l", main = "rho")
+      }
     }
 
-    grid = c(2, 3)
-    if (rho_up) grid = c(2, 4)
-    graphics::par(mfrow = grid)
-    burn = min(floor(total / 20), 200)
-    its  = burn:(total / 10)
-    plot(its * 10, plots$theta[its], type = "l", main = "theta")
-    plot(its * 10, plots$beta[its], type = "l", main = "beta")
-    plot(its * 10, plots$tau2[its], type = "l", main = "tau2")
-    plot(its * 10, plots$G[its], type = "l", main = "G")
-    plot(its * 10, plots$Z[its], type = "l", main = "Z")
-    plot(its * 10, plots$Ag[its], type = "l", main = "Ag")
-    if (rho_up) {
-      plot(its * 10, plots$rho[its], type = "l", main = "rho")
-    }
   }
   cat("Finished running model at:", format(Sys.time(), "%a %b %d %X"))
 }

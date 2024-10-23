@@ -25,31 +25,71 @@ geteig <- function(covar) {
     .Call(`_RST_geteig`, covar)
 }
 
-update_beta <- function(beta, theta, Z, tau2, island_region) {
-    .Call(`_RST_update_beta`, beta, theta, Z, tau2, island_region)
+m_update_beta <- function(beta, theta, Z, tau2, island_region) {
+    .Call(`_RST_m_update_beta`, beta, theta, Z, tau2, island_region)
 }
 
-update_Z <- function(Z, G, theta, beta, rho, tau2, adjacency, num_adj, island_region, island_id) {
-    .Call(`_RST_update_Z`, Z, G, theta, beta, rho, tau2, adjacency, num_adj, island_region, island_id)
+m_update_Z <- function(Z, G, theta, beta, tau2, adjacency, num_adj, island_region, island_id) {
+    .Call(`_RST_m_update_Z`, Z, G, theta, beta, tau2, adjacency, num_adj, island_region, island_id)
 }
 
-update_G <- function(G, Z, Ag, rho, G_df, adjacency, num_island) {
-    .Call(`_RST_update_G`, G, Z, Ag, rho, G_df, adjacency, num_island)
+m_update_G <- function(G, Z, G_df, G_scale, adjacency, num_island) {
+    .Call(`_RST_m_update_G`, G, Z, G_df, G_scale, adjacency, num_island)
 }
 
-update_Ag <- function(Ag, G, Ag_scale, G_df, Ag_df) {
-    .Call(`_RST_update_Ag`, Ag, G, Ag_scale, G_df, Ag_df)
+m_update_tau2 <- function(tau2, theta, beta, Z, tau_a, tau_b, island_id) {
+    .Call(`_RST_m_update_tau2`, tau2, theta, beta, Z, tau_a, tau_b, island_id)
 }
 
-update_tau2 <- function(tau2, theta, beta, Z, tau_a, tau_b, island_id) {
-    .Call(`_RST_update_tau2`, tau2, theta, beta, Z, tau_a, tau_b, island_id)
+m_update_theta <- function(theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method) {
+    .Call(`_RST_m_update_theta`, theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method)
 }
 
-update_theta <- function(theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method) {
-    .Call(`_RST_update_theta`, theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method)
+mst_update_beta <- function(beta, theta, Z, tau2, island_region) {
+    .Call(`_RST_mst_update_beta`, beta, theta, Z, tau2, island_region)
 }
 
-update_rho <- function(rho, r_accept, G, Z, rho_a, rho_b, rho_sd, adjacency, num_island) {
-    .Call(`_RST_update_rho`, rho, r_accept, G, Z, rho_a, rho_b, rho_sd, adjacency, num_island)
+mst_update_Z <- function(Z, G, theta, beta, rho, tau2, adjacency, num_adj, island_region, island_id) {
+    .Call(`_RST_mst_update_Z`, Z, G, theta, beta, rho, tau2, adjacency, num_adj, island_region, island_id)
+}
+
+mst_update_G <- function(G, Z, Ag, rho, G_df, adjacency, num_island) {
+    .Call(`_RST_mst_update_G`, G, Z, Ag, rho, G_df, adjacency, num_island)
+}
+
+mst_update_Ag <- function(Ag, G, Ag_scale, G_df, Ag_df) {
+    .Call(`_RST_mst_update_Ag`, Ag, G, Ag_scale, G_df, Ag_df)
+}
+
+mst_update_tau2 <- function(tau2, theta, beta, Z, tau_a, tau_b, island_id) {
+    .Call(`_RST_mst_update_tau2`, tau2, theta, beta, Z, tau_a, tau_b, island_id)
+}
+
+mst_update_theta <- function(theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method) {
+    .Call(`_RST_mst_update_theta`, theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method)
+}
+
+mst_update_rho <- function(rho, r_accept, G, Z, rho_a, rho_b, rho_sd, adjacency, num_island) {
+    .Call(`_RST_mst_update_rho`, rho, r_accept, G, Z, rho_a, rho_b, rho_sd, adjacency, num_island)
+}
+
+u_update_Z <- function(Z, sig2, theta, beta, tau2, adjacency, num_adj, island_region, island_id) {
+    .Call(`_RST_u_update_Z`, Z, sig2, theta, beta, tau2, adjacency, num_adj, island_region, island_id)
+}
+
+u_update_sig2 <- function(sig2, Z, beta, tau2, adjacency, num_adj, island_region, num_island_region, A, m0, sig_a, sig_b) {
+    .Call(`_RST_u_update_sig2`, sig2, Z, beta, tau2, adjacency, num_adj, island_region, num_island_region, A, m0, sig_a, sig_b)
+}
+
+u_update_tau2 <- function(tau2, theta, beta, Z, sig2, num_island_region, island_id, A, m0, tau_a, tau_b) {
+    .Call(`_RST_u_update_tau2`, tau2, theta, beta, Z, sig2, num_island_region, island_id, A, m0, tau_a, tau_b)
+}
+
+u_update_theta <- function(theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method) {
+    .Call(`_RST_u_update_theta`, theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method)
+}
+
+u_update_beta <- function(beta, theta, Z, tau2, sig2, A, m0, island_region) {
+    .Call(`_RST_u_update_beta`, beta, theta, Z, tau2, sig2, A, m0, island_region)
 }
 

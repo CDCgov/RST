@@ -4,14 +4,14 @@
 \alias{get_relative_precision}
 \title{Calculate Relative Precisions}
 \usage{
-get_relative_precision(output, medians, perc_ci)
+get_relative_precision(output, medians, perc_ci = 0.95)
 }
 \arguments{
 \item{output}{Array of output to generate relative precisions for.}
 
 \item{medians}{Array of medians generated from output}
 
-\item{perc_ci}{Number from 0 to 1. Generates relative precisions for a `perc_ci * 100`\% credible interval.}
+\item{perc_ci}{Number from 0 to 1. Generates relative precisions for a \code{perc_ci * 100}\% credible interval.}
 }
 \description{
 Calculate Relative Precisions
