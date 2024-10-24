@@ -1,7 +1,7 @@
 # The RSTr R Package
 ## Introduction
 
-The Rate Stabilizing Tool (RSTr) package is a tool that uses a Bayesian spatiotemporal model in conjunction with C++ to help you quickly and easily generate spatially smoothed estimates for your spatiotemporal small area data. For the ArcGIS Plugin, visit the [RSTr ArcGIS Plugin webpage](https://github.com/CEHI-code-repos/RateStabilizingTool2).
+The Rate Stabilizing Tool R package (RSTr) is a tool that uses a Bayesian spatiotemporal model in conjunction with C++ to help you quickly and easily generate spatially smoothed estimates for your spatiotemporal small area data. For the ArcGIS Plugin, visit the [RSTr ArcGIS Plugin webpage](https://github.com/CEHI-code-repos/RateStabilizingTool2).
 
 ## Installation
 
