@@ -1,6 +1,6 @@
 Package: RSTr
 Type: Package
-Title: Rate Stabilizing Tool: Gibbs Samplers for CAR-based Spatiotemporal Models
+Title: Rate Stabilizing Tool: Gibbs Samplers for Bayesian Spatiotemporal CAR Models
 Version: 0.9
 Date: 2024-09-17
 Author: David DeLara
