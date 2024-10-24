@@ -1,7 +1,6 @@
 #' Load MCMC samples
 #' @param name  Name of model
 #' @param dir   Directory where model lives
-#' @param time  TIme period of data to pull from. `last` gathers final time period data and `all` gathers all years of data.
 #' @param param Which parameter samples to load
 #' @param burn  Numer of burn-in samples to discard
 #'

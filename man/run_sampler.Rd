@@ -10,6 +10,8 @@ run_sampler(name, dir, .show_plots = TRUE)
 \item{name}{Name of model and corresponding folder}
 
 \item{dir}{Directory where model lives}
+
+\item{.show_plots}{Show or hide traceplots as}
 }
 \description{
 Run Gibbs sampler

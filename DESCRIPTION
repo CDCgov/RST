@@ -1,4 +1,4 @@
-Package: RST
+Package: RSTr
 Type: Package
 Title: Rate Stabilizing Tool: Gibbs Samplers for CAR-based Spatiotemporal Models
 Version: 0.9

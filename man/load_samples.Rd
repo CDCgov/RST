@@ -14,8 +14,6 @@ load_samples(name, dir, param = "theta", burn = 2000)
 \item{param}{Which parameter samples to load}
 
 \item{burn}{Numer of burn-in samples to discard}
-
-\item{time}{TIme period of data to pull from. `last` gathers final time period data and `all` gathers all years of data.}
 }
 \description{
 Load MCMC samples

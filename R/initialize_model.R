@@ -5,15 +5,16 @@
 #' @param adjacency Dataset including adjacency information
 #' @param inits Optional list of initial conditions for each parameter
 #' @param priors Optional list of priors for updates
-#' @param method Run model with either Binomial data or Poisson data.
+#' @param model Run model as an MSTCAR/UCAR/USTCAR/MCAR model
+#' @param method Run model with either Binomial data or Poisson data
 #' @param m0 Baseline neighbor count by region
-#' @param A Describes how intensely to smooth each group/time of regions
+#' @param A Describes intensity of smoothing between regions
 #' @param rho_up Controls whether rho update is performed for USTCAR or MSTCAR models
 #' @param impute_lb If counts between lb and ub are suppressed for privacy reasons, impute_lb is lower bound
 #' @param impute_ub If counts between lb and ub are suppressed for privacy reasons, impute_ub is upper bound
 #' @param seed Set of random seeds to use for data replication
 #' @param .ignore_checks If set to TRUE, ignores data checks. Only use if you are certain that your input data is
-#' correct and you are encountering bugs during setup.
+#' correct and you are encountering bugs during setup
 #'
 #' @export
 initialize_model = function(

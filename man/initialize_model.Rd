@@ -35,11 +35,13 @@ initialize_model(
 
 \item{priors}{Optional list of priors for updates}
 
-\item{method}{Run model with either Binomial data or Poisson data.}
+\item{model}{Run model as an MSTCAR/UCAR/USTCAR/MCAR model}
+
+\item{method}{Run model with either Binomial data or Poisson data}
 
 \item{m0}{Baseline neighbor count by region}
 
-\item{A}{Describes how intensely to smooth each group/time of regions}
+\item{A}{Describes intensity of smoothing between regions}
 
 \item{rho_up}{Controls whether rho update is performed for USTCAR or MSTCAR models}
 
@@ -50,7 +52,7 @@ initialize_model(
 \item{seed}{Set of random seeds to use for data replication}
 
 \item{.ignore_checks}{If set to TRUE, ignores data checks. Only use if you are certain that your input data is
-correct and you are encountering bugs during setup.}
+correct and you are encountering bugs during setup}
 }
 \description{
 Initialize CAR model

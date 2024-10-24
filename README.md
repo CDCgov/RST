@@ -1,11 +1,11 @@
-# The RST R Package
+# The RSTr R Package
 ## Introduction
 
-The Rate Stabilizing Tool (RST) package is a tool that uses a Bayesian spatiotemporal model in conjunction with C++ to help you quickly and easily generate spatially smoothed estimates for your spatiotemporal small area data. For the ArcGIS Plugin, visit the [RST ArcGIS Plugin webpage](https://github.com/CEHI-code-repos/RateStabilizingTool2).
+The Rate Stabilizing Tool (RSTr) package is a tool that uses a Bayesian spatiotemporal model in conjunction with C++ to help you quickly and easily generate spatially smoothed estimates for your spatiotemporal small area data. For the ArcGIS Plugin, visit the [RSTr ArcGIS Plugin webpage](https://github.com/CEHI-code-repos/RateStabilizingTool2).
 
 ## Installation
 
-To install the RST package, a few dependent packages are needed first. RST depends on the following:
+To install the RSTr package, a few dependent packages are needed first. RSTr depends on the following:
 
 ##### Packages
 - [Rcpp](https://cran.r-project.org/package=Rcpp): Rcpp is a package that allows integration of C++ code into R.
@@ -31,20 +31,20 @@ installr::install.Rtools()
 Then, the package can be installed from GitHub:
 ```sh
 install.packages("remotes") # Optional if you already have an R package which can install from GitHub
-remotes::install_github("CDCgov/RST", build_vignettes = TRUE)
+remotes::install_github("CDCgov/RSTr", build_vignettes = TRUE)
 ```
-If this is your first time using the RST R package, check the introductory vignette to learn how to use the package:
+If this is your first time using the RSTr package, check the introductory vignette to learn how to use the package:
 ```sh
-vignette("RST")
+vignette("RSTr")
 ```
 
 ### Updates
-To update RST, remove the package from R, restart R, and re-install from GitHub:
+To update RSTr, remove the package from R, restart R, and re-install from GitHub:
 ```sh
-remove.packages("RST")
+remove.packages("RSTr")
 # Restart R to allow package installation
 remotes::install_github("CDCgov/rst", build_vignettes = TRUE)
 ```
 
 ## Thanks!
-Thanks for checking out the RST package. I hope you find it useful in your spatiotemporal modeling! Please feel free to give feedback on bugs, ways to make the package more accessible to use, and features you'd like to see added to the package.
+Thanks for checking out the RSTr package. I hope you find it useful in your spatiotemporal modeling! Please feel free to give feedback on bugs, ways to make the package more accessible to use, and features you'd like to see added to the package.

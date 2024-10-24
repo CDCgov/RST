@@ -1,6 +1,7 @@
 #' Run Gibbs sampler
 #' @param name Name of model and corresponding folder
 #' @param dir  Directory where model lives
+#' @param .show_plots Show or hide traceplots as 
 #'
 #' @export
 run_sampler = function(name, dir, .show_plots = TRUE) {

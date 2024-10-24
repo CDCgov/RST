@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // get_regs
 arma::cube get_regs(const arma::cube& arr, const arma::uvec& ind);
-RcppExport SEXP _RST_get_regs(SEXP arrSEXP, SEXP indSEXP) {
+RcppExport SEXP _RSTr_get_regs(SEXP arrSEXP, SEXP indSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -25,7 +25,7 @@ END_RCPP
 }
 // get_grp
 arma::vec get_grp(const arma::cube& arr, const arma::uword& reg, const arma::uword time);
-RcppExport SEXP _RST_get_grp(SEXP arrSEXP, SEXP regSEXP, SEXP timeSEXP) {
+RcppExport SEXP _RSTr_get_grp(SEXP arrSEXP, SEXP regSEXP, SEXP timeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -38,7 +38,7 @@ END_RCPP
 }
 // Sig_eta_i
 arma::field<arma::mat> Sig_eta_i(const arma::cube& G, const arma::vec& rho);
-RcppExport SEXP _RST_Sig_eta_i(SEXP GSEXP, SEXP rhoSEXP) {
+RcppExport SEXP _RSTr_Sig_eta_i(SEXP GSEXP, SEXP rhoSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -50,7 +50,7 @@ END_RCPP
 }
 // Sig_eta
 arma::field<arma::mat> Sig_eta(const arma::field<arma::mat> Sein);
-RcppExport SEXP _RST_Sig_eta(SEXP SeinSEXP) {
+RcppExport SEXP _RSTr_Sig_eta(SEXP SeinSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -61,7 +61,7 @@ END_RCPP
 }
 // cpp_rmvnorm
 arma::mat cpp_rmvnorm(const arma::vec& mean, const arma::mat& covar);
-RcppExport SEXP _RST_cpp_rmvnorm(SEXP meanSEXP, SEXP covarSEXP) {
+RcppExport SEXP _RSTr_cpp_rmvnorm(SEXP meanSEXP, SEXP covarSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -73,7 +73,7 @@ END_RCPP
 }
 // geteig
 arma::mat geteig(const arma::mat& covar);
-RcppExport SEXP _RST_geteig(SEXP covarSEXP) {
+RcppExport SEXP _RSTr_geteig(SEXP covarSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -84,7 +84,7 @@ END_RCPP
 }
 // m_update_beta
 arma::mat m_update_beta(arma::mat& beta, const arma::mat& theta, const arma::mat& Z, const arma::rowvec& tau2, const arma::field<arma::uvec>& island_region);
-RcppExport SEXP _RST_m_update_beta(SEXP betaSEXP, SEXP thetaSEXP, SEXP ZSEXP, SEXP tau2SEXP, SEXP island_regionSEXP) {
+RcppExport SEXP _RSTr_m_update_beta(SEXP betaSEXP, SEXP thetaSEXP, SEXP ZSEXP, SEXP tau2SEXP, SEXP island_regionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -99,7 +99,7 @@ END_RCPP
 }
 // m_update_Z
 arma::mat m_update_Z(arma::mat& Z, const arma::mat& G, const arma::mat& theta, const arma::mat& beta, const arma::vec& tau2, const arma::field<arma::uvec> adjacency, const arma::vec& num_adj, const arma::field<arma::uvec> island_region, const arma::uvec& island_id);
-RcppExport SEXP _RST_m_update_Z(SEXP ZSEXP, SEXP GSEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP island_idSEXP) {
+RcppExport SEXP _RSTr_m_update_Z(SEXP ZSEXP, SEXP GSEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP island_idSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -118,7 +118,7 @@ END_RCPP
 }
 // m_update_G
 arma::mat m_update_G(arma::mat& G, const arma::mat& Z, const double& G_df, const arma::mat& G_scale, const arma::field<arma::uvec>& adjacency, const arma::uword& num_island);
-RcppExport SEXP _RST_m_update_G(SEXP GSEXP, SEXP ZSEXP, SEXP G_dfSEXP, SEXP G_scaleSEXP, SEXP adjacencySEXP, SEXP num_islandSEXP) {
+RcppExport SEXP _RSTr_m_update_G(SEXP GSEXP, SEXP ZSEXP, SEXP G_dfSEXP, SEXP G_scaleSEXP, SEXP adjacencySEXP, SEXP num_islandSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -134,7 +134,7 @@ END_RCPP
 }
 // m_update_tau2
 arma::vec m_update_tau2(arma::vec& tau2, const arma::mat& theta, const arma::mat& beta, const arma::mat& Z, const double& tau_a, const double& tau_b, const arma::uvec& island_id);
-RcppExport SEXP _RST_m_update_tau2(SEXP tau2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP ZSEXP, SEXP tau_aSEXP, SEXP tau_bSEXP, SEXP island_idSEXP) {
+RcppExport SEXP _RSTr_m_update_tau2(SEXP tau2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP ZSEXP, SEXP tau_aSEXP, SEXP tau_bSEXP, SEXP island_idSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -151,7 +151,7 @@ END_RCPP
 }
 // m_update_theta
 arma::mat m_update_theta(arma::mat& theta, arma::mat& t_accept, const arma::mat& Y, const arma::mat& n, const arma::mat& Z, const arma::mat& beta, const arma::vec& tau2, const arma::mat& theta_sd, const arma::uvec& island_id, const String& method);
-RcppExport SEXP _RST_m_update_theta(SEXP thetaSEXP, SEXP t_acceptSEXP, SEXP YSEXP, SEXP nSEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP theta_sdSEXP, SEXP island_idSEXP, SEXP methodSEXP) {
+RcppExport SEXP _RSTr_m_update_theta(SEXP thetaSEXP, SEXP t_acceptSEXP, SEXP YSEXP, SEXP nSEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP theta_sdSEXP, SEXP island_idSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -171,7 +171,7 @@ END_RCPP
 }
 // mst_update_beta
 arma::cube mst_update_beta(arma::cube& beta, const arma::cube& theta, const arma::cube& Z, const arma::vec& tau2, const arma::field<arma::uvec>& island_region);
-RcppExport SEXP _RST_mst_update_beta(SEXP betaSEXP, SEXP thetaSEXP, SEXP ZSEXP, SEXP tau2SEXP, SEXP island_regionSEXP) {
+RcppExport SEXP _RSTr_mst_update_beta(SEXP betaSEXP, SEXP thetaSEXP, SEXP ZSEXP, SEXP tau2SEXP, SEXP island_regionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -186,7 +186,7 @@ END_RCPP
 }
 // mst_update_Z
 arma::cube mst_update_Z(arma::cube& Z, const arma::cube& G, const arma::cube& theta, const arma::cube& beta, const arma::vec& rho, const arma::vec& tau2, const arma::field<arma::uvec>& adjacency, const arma::vec& num_adj, const arma::field<arma::uvec>& island_region, const arma::uvec& island_id);
-RcppExport SEXP _RST_mst_update_Z(SEXP ZSEXP, SEXP GSEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP rhoSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP island_idSEXP) {
+RcppExport SEXP _RSTr_mst_update_Z(SEXP ZSEXP, SEXP GSEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP rhoSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP island_idSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -206,7 +206,7 @@ END_RCPP
 }
 // mst_update_G
 arma::cube mst_update_G(arma::cube& G, const arma::cube& Z, const arma::mat& Ag, const arma::vec& rho, const double& G_df, const arma::field<arma::uvec>& adjacency, const arma::uword& num_island);
-RcppExport SEXP _RST_mst_update_G(SEXP GSEXP, SEXP ZSEXP, SEXP AgSEXP, SEXP rhoSEXP, SEXP G_dfSEXP, SEXP adjacencySEXP, SEXP num_islandSEXP) {
+RcppExport SEXP _RSTr_mst_update_G(SEXP GSEXP, SEXP ZSEXP, SEXP AgSEXP, SEXP rhoSEXP, SEXP G_dfSEXP, SEXP adjacencySEXP, SEXP num_islandSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -223,7 +223,7 @@ END_RCPP
 }
 // mst_update_Ag
 arma::mat mst_update_Ag(arma::mat& Ag, const arma::cube& G, const arma::mat& Ag_scale, const double& G_df, const double& Ag_df);
-RcppExport SEXP _RST_mst_update_Ag(SEXP AgSEXP, SEXP GSEXP, SEXP Ag_scaleSEXP, SEXP G_dfSEXP, SEXP Ag_dfSEXP) {
+RcppExport SEXP _RSTr_mst_update_Ag(SEXP AgSEXP, SEXP GSEXP, SEXP Ag_scaleSEXP, SEXP G_dfSEXP, SEXP Ag_dfSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -238,7 +238,7 @@ END_RCPP
 }
 // mst_update_tau2
 arma::vec mst_update_tau2(arma::vec& tau2, const arma::cube& theta, const arma::cube& beta, const arma::cube& Z, const double& tau_a, const double& tau_b, const arma::uvec& island_id);
-RcppExport SEXP _RST_mst_update_tau2(SEXP tau2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP ZSEXP, SEXP tau_aSEXP, SEXP tau_bSEXP, SEXP island_idSEXP) {
+RcppExport SEXP _RSTr_mst_update_tau2(SEXP tau2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP ZSEXP, SEXP tau_aSEXP, SEXP tau_bSEXP, SEXP island_idSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -255,7 +255,7 @@ END_RCPP
 }
 // mst_update_theta
 arma::cube mst_update_theta(arma::cube& theta, arma::cube& t_accept, const arma::cube& Y, const arma::cube& n, const arma::cube& Z, const arma::cube& beta, const arma::vec& tau2, const arma::cube& theta_sd, const arma::uvec& island_id, const String& method);
-RcppExport SEXP _RST_mst_update_theta(SEXP thetaSEXP, SEXP t_acceptSEXP, SEXP YSEXP, SEXP nSEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP theta_sdSEXP, SEXP island_idSEXP, SEXP methodSEXP) {
+RcppExport SEXP _RSTr_mst_update_theta(SEXP thetaSEXP, SEXP t_acceptSEXP, SEXP YSEXP, SEXP nSEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP theta_sdSEXP, SEXP island_idSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -275,7 +275,7 @@ END_RCPP
 }
 // mst_update_rho
 arma::vec mst_update_rho(arma::vec& rho, arma::vec& r_accept, const arma::cube& G, const arma::cube& Z, const double& rho_a, const double& rho_b, const arma::vec& rho_sd, const arma::field<arma::uvec>& adjacency, const arma::uword& num_island);
-RcppExport SEXP _RST_mst_update_rho(SEXP rhoSEXP, SEXP r_acceptSEXP, SEXP GSEXP, SEXP ZSEXP, SEXP rho_aSEXP, SEXP rho_bSEXP, SEXP rho_sdSEXP, SEXP adjacencySEXP, SEXP num_islandSEXP) {
+RcppExport SEXP _RSTr_mst_update_rho(SEXP rhoSEXP, SEXP r_acceptSEXP, SEXP GSEXP, SEXP ZSEXP, SEXP rho_aSEXP, SEXP rho_bSEXP, SEXP rho_sdSEXP, SEXP adjacencySEXP, SEXP num_islandSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -294,7 +294,7 @@ END_RCPP
 }
 // u_update_Z
 arma::vec u_update_Z(arma::vec& Z, const double& sig2, const arma::vec& theta, const arma::vec& beta, const double& tau2, const arma::field<arma::uvec> adjacency, const arma::vec& num_adj, const arma::field<arma::uvec>& island_region, const arma::uvec& island_id);
-RcppExport SEXP _RST_u_update_Z(SEXP ZSEXP, SEXP sig2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP island_idSEXP) {
+RcppExport SEXP _RSTr_u_update_Z(SEXP ZSEXP, SEXP sig2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP island_idSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -313,7 +313,7 @@ END_RCPP
 }
 // u_update_sig2
 double u_update_sig2(double& sig2, const arma::vec& Z, const arma::vec& beta, const double& tau2, const arma::field<arma::uvec> adjacency, const arma::vec& num_adj, const arma::field<arma::uvec>& island_region, const arma::uvec& num_island_region, const double& A, const double& m0, const double& sig_a, const double& sig_b, const String& method);
-RcppExport SEXP _RST_u_update_sig2(SEXP sig2SEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP num_island_regionSEXP, SEXP ASEXP, SEXP m0SEXP, SEXP sig_aSEXP, SEXP sig_bSEXP, SEXP methodSEXP) {
+RcppExport SEXP _RSTr_u_update_sig2(SEXP sig2SEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP num_island_regionSEXP, SEXP ASEXP, SEXP m0SEXP, SEXP sig_aSEXP, SEXP sig_bSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -336,7 +336,7 @@ END_RCPP
 }
 // u_update_tau2
 double u_update_tau2(double& tau2, const arma::vec& theta, const arma::vec& beta, const arma::vec& Z, const double& sig2, const arma::uvec& num_island_region, const arma::uvec& island_id, const double& A, const double& m0, const double& tau_a, const double& tau_b, const String& method);
-RcppExport SEXP _RST_u_update_tau2(SEXP tau2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP ZSEXP, SEXP sig2SEXP, SEXP num_island_regionSEXP, SEXP island_idSEXP, SEXP ASEXP, SEXP m0SEXP, SEXP tau_aSEXP, SEXP tau_bSEXP, SEXP methodSEXP) {
+RcppExport SEXP _RSTr_u_update_tau2(SEXP tau2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP ZSEXP, SEXP sig2SEXP, SEXP num_island_regionSEXP, SEXP island_idSEXP, SEXP ASEXP, SEXP m0SEXP, SEXP tau_aSEXP, SEXP tau_bSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -358,7 +358,7 @@ END_RCPP
 }
 // u_update_theta
 arma::vec u_update_theta(arma::vec& theta, arma::vec& t_accept, const arma::vec& Y, const arma::vec& n, const arma::vec& Z, const arma::vec& beta, const double& tau2, const arma::vec& theta_sd, const arma::uvec& island_id, const String& method);
-RcppExport SEXP _RST_u_update_theta(SEXP thetaSEXP, SEXP t_acceptSEXP, SEXP YSEXP, SEXP nSEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP theta_sdSEXP, SEXP island_idSEXP, SEXP methodSEXP) {
+RcppExport SEXP _RSTr_u_update_theta(SEXP thetaSEXP, SEXP t_acceptSEXP, SEXP YSEXP, SEXP nSEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP theta_sdSEXP, SEXP island_idSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -378,7 +378,7 @@ END_RCPP
 }
 // u_update_beta
 arma::vec u_update_beta(arma::vec& beta, const arma::vec& theta, const arma::vec& Z, const double& tau2, const double& sig2, const double& A, const double& m0, const arma::field<arma::uvec>& island_region, const String& method);
-RcppExport SEXP _RST_u_update_beta(SEXP betaSEXP, SEXP thetaSEXP, SEXP ZSEXP, SEXP tau2SEXP, SEXP sig2SEXP, SEXP ASEXP, SEXP m0SEXP, SEXP island_regionSEXP, SEXP methodSEXP) {
+RcppExport SEXP _RSTr_u_update_beta(SEXP betaSEXP, SEXP thetaSEXP, SEXP ZSEXP, SEXP tau2SEXP, SEXP sig2SEXP, SEXP ASEXP, SEXP m0SEXP, SEXP island_regionSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -397,33 +397,33 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RST_get_regs", (DL_FUNC) &_RST_get_regs, 2},
-    {"_RST_get_grp", (DL_FUNC) &_RST_get_grp, 3},
-    {"_RST_Sig_eta_i", (DL_FUNC) &_RST_Sig_eta_i, 2},
-    {"_RST_Sig_eta", (DL_FUNC) &_RST_Sig_eta, 1},
-    {"_RST_cpp_rmvnorm", (DL_FUNC) &_RST_cpp_rmvnorm, 2},
-    {"_RST_geteig", (DL_FUNC) &_RST_geteig, 1},
-    {"_RST_m_update_beta", (DL_FUNC) &_RST_m_update_beta, 5},
-    {"_RST_m_update_Z", (DL_FUNC) &_RST_m_update_Z, 9},
-    {"_RST_m_update_G", (DL_FUNC) &_RST_m_update_G, 6},
-    {"_RST_m_update_tau2", (DL_FUNC) &_RST_m_update_tau2, 7},
-    {"_RST_m_update_theta", (DL_FUNC) &_RST_m_update_theta, 10},
-    {"_RST_mst_update_beta", (DL_FUNC) &_RST_mst_update_beta, 5},
-    {"_RST_mst_update_Z", (DL_FUNC) &_RST_mst_update_Z, 10},
-    {"_RST_mst_update_G", (DL_FUNC) &_RST_mst_update_G, 7},
-    {"_RST_mst_update_Ag", (DL_FUNC) &_RST_mst_update_Ag, 5},
-    {"_RST_mst_update_tau2", (DL_FUNC) &_RST_mst_update_tau2, 7},
-    {"_RST_mst_update_theta", (DL_FUNC) &_RST_mst_update_theta, 10},
-    {"_RST_mst_update_rho", (DL_FUNC) &_RST_mst_update_rho, 9},
-    {"_RST_u_update_Z", (DL_FUNC) &_RST_u_update_Z, 9},
-    {"_RST_u_update_sig2", (DL_FUNC) &_RST_u_update_sig2, 13},
-    {"_RST_u_update_tau2", (DL_FUNC) &_RST_u_update_tau2, 12},
-    {"_RST_u_update_theta", (DL_FUNC) &_RST_u_update_theta, 10},
-    {"_RST_u_update_beta", (DL_FUNC) &_RST_u_update_beta, 9},
+    {"_RSTr_get_regs", (DL_FUNC) &_RSTr_get_regs, 2},
+    {"_RSTr_get_grp", (DL_FUNC) &_RSTr_get_grp, 3},
+    {"_RSTr_Sig_eta_i", (DL_FUNC) &_RSTr_Sig_eta_i, 2},
+    {"_RSTr_Sig_eta", (DL_FUNC) &_RSTr_Sig_eta, 1},
+    {"_RSTr_cpp_rmvnorm", (DL_FUNC) &_RSTr_cpp_rmvnorm, 2},
+    {"_RSTr_geteig", (DL_FUNC) &_RSTr_geteig, 1},
+    {"_RSTr_m_update_beta", (DL_FUNC) &_RSTr_m_update_beta, 5},
+    {"_RSTr_m_update_Z", (DL_FUNC) &_RSTr_m_update_Z, 9},
+    {"_RSTr_m_update_G", (DL_FUNC) &_RSTr_m_update_G, 6},
+    {"_RSTr_m_update_tau2", (DL_FUNC) &_RSTr_m_update_tau2, 7},
+    {"_RSTr_m_update_theta", (DL_FUNC) &_RSTr_m_update_theta, 10},
+    {"_RSTr_mst_update_beta", (DL_FUNC) &_RSTr_mst_update_beta, 5},
+    {"_RSTr_mst_update_Z", (DL_FUNC) &_RSTr_mst_update_Z, 10},
+    {"_RSTr_mst_update_G", (DL_FUNC) &_RSTr_mst_update_G, 7},
+    {"_RSTr_mst_update_Ag", (DL_FUNC) &_RSTr_mst_update_Ag, 5},
+    {"_RSTr_mst_update_tau2", (DL_FUNC) &_RSTr_mst_update_tau2, 7},
+    {"_RSTr_mst_update_theta", (DL_FUNC) &_RSTr_mst_update_theta, 10},
+    {"_RSTr_mst_update_rho", (DL_FUNC) &_RSTr_mst_update_rho, 9},
+    {"_RSTr_u_update_Z", (DL_FUNC) &_RSTr_u_update_Z, 9},
+    {"_RSTr_u_update_sig2", (DL_FUNC) &_RSTr_u_update_sig2, 13},
+    {"_RSTr_u_update_tau2", (DL_FUNC) &_RSTr_u_update_tau2, 12},
+    {"_RSTr_u_update_theta", (DL_FUNC) &_RSTr_u_update_theta, 10},
+    {"_RSTr_u_update_beta", (DL_FUNC) &_RSTr_u_update_beta, 9},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_RST(DllInfo *dll) {
+RcppExport void R_init_RSTr(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

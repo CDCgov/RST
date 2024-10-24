@@ -2,3 +2,10 @@
 ^\.git.*$
 ^\.vscode$
 ^.*\.md$
+^.*\.dll$
+^.*\.so$
+^src/.*\.o$
+^src/.*(catche|tmp|temp)/$
+^inst/.*\.dll$
+^inst/.*\.so$
+^libs/

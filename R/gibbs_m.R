@@ -1,5 +1,5 @@
 #' Gibbs sampler
-#' @useDynLib RST, .registration = TRUE
+#' @useDynLib RSTr, .registration = TRUE
 #' @importFrom Rcpp evalCpp
 #' @importFrom RcppDist bayeslm
 #' @importFrom RcppArmadillo fastLm
