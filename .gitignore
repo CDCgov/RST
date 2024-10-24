@@ -10,3 +10,8 @@ src/*.so
 .Rproj.user/
 .Rhistory
 libs/
+src/parameter_updates_m.o
+src/parameter_updates_mst.o
+src/parameter_updates_u.o
+src/parameter_updates_ust.o
+src/RcppExports.o
