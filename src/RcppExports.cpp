@@ -312,8 +312,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // u_update_sig2
-double u_update_sig2(double& sig2, const arma::vec& Z, const arma::vec& beta, const double& tau2, const arma::field<arma::uvec> adjacency, const arma::vec& num_adj, const arma::field<arma::uvec>& island_region, const arma::uvec& num_island_region, const double& A, const double& m0, const double& sig_a, const double& sig_b);
-RcppExport SEXP _RST_u_update_sig2(SEXP sig2SEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP num_island_regionSEXP, SEXP ASEXP, SEXP m0SEXP, SEXP sig_aSEXP, SEXP sig_bSEXP) {
+double u_update_sig2(double& sig2, const arma::vec& Z, const arma::vec& beta, const double& tau2, const arma::field<arma::uvec> adjacency, const arma::vec& num_adj, const arma::field<arma::uvec>& island_region, const arma::uvec& num_island_region, const double& A, const double& m0, const double& sig_a, const double& sig_b, const String& method);
+RcppExport SEXP _RST_u_update_sig2(SEXP sig2SEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP tau2SEXP, SEXP adjacencySEXP, SEXP num_adjSEXP, SEXP island_regionSEXP, SEXP num_island_regionSEXP, SEXP ASEXP, SEXP m0SEXP, SEXP sig_aSEXP, SEXP sig_bSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -329,13 +329,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const double& >::type m0(m0SEXP);
     Rcpp::traits::input_parameter< const double& >::type sig_a(sig_aSEXP);
     Rcpp::traits::input_parameter< const double& >::type sig_b(sig_bSEXP);
-    rcpp_result_gen = Rcpp::wrap(u_update_sig2(sig2, Z, beta, tau2, adjacency, num_adj, island_region, num_island_region, A, m0, sig_a, sig_b));
+    Rcpp::traits::input_parameter< const String& >::type method(methodSEXP);
+    rcpp_result_gen = Rcpp::wrap(u_update_sig2(sig2, Z, beta, tau2, adjacency, num_adj, island_region, num_island_region, A, m0, sig_a, sig_b, method));
     return rcpp_result_gen;
 END_RCPP
 }
 // u_update_tau2
-double u_update_tau2(double& tau2, const arma::vec& theta, const arma::vec& beta, const arma::vec& Z, const double& sig2, const arma::uvec& num_island_region, const arma::uvec& island_id, const double& A, const double& m0, const double& tau_a, const double& tau_b);
-RcppExport SEXP _RST_u_update_tau2(SEXP tau2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP ZSEXP, SEXP sig2SEXP, SEXP num_island_regionSEXP, SEXP island_idSEXP, SEXP ASEXP, SEXP m0SEXP, SEXP tau_aSEXP, SEXP tau_bSEXP) {
+double u_update_tau2(double& tau2, const arma::vec& theta, const arma::vec& beta, const arma::vec& Z, const double& sig2, const arma::uvec& num_island_region, const arma::uvec& island_id, const double& A, const double& m0, const double& tau_a, const double& tau_b, const String& method);
+RcppExport SEXP _RST_u_update_tau2(SEXP tau2SEXP, SEXP thetaSEXP, SEXP betaSEXP, SEXP ZSEXP, SEXP sig2SEXP, SEXP num_island_regionSEXP, SEXP island_idSEXP, SEXP ASEXP, SEXP m0SEXP, SEXP tau_aSEXP, SEXP tau_bSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -350,7 +351,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const double& >::type m0(m0SEXP);
     Rcpp::traits::input_parameter< const double& >::type tau_a(tau_aSEXP);
     Rcpp::traits::input_parameter< const double& >::type tau_b(tau_bSEXP);
-    rcpp_result_gen = Rcpp::wrap(u_update_tau2(tau2, theta, beta, Z, sig2, num_island_region, island_id, A, m0, tau_a, tau_b));
+    Rcpp::traits::input_parameter< const String& >::type method(methodSEXP);
+    rcpp_result_gen = Rcpp::wrap(u_update_tau2(tau2, theta, beta, Z, sig2, num_island_region, island_id, A, m0, tau_a, tau_b, method));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -375,8 +377,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // u_update_beta
-arma::vec u_update_beta(arma::vec& beta, const arma::vec& theta, const arma::vec& Z, const double& tau2, const double& sig2, const double& A, const double& m0, const arma::field<arma::uvec>& island_region);
-RcppExport SEXP _RST_u_update_beta(SEXP betaSEXP, SEXP thetaSEXP, SEXP ZSEXP, SEXP tau2SEXP, SEXP sig2SEXP, SEXP ASEXP, SEXP m0SEXP, SEXP island_regionSEXP) {
+arma::vec u_update_beta(arma::vec& beta, const arma::vec& theta, const arma::vec& Z, const double& tau2, const double& sig2, const double& A, const double& m0, const arma::field<arma::uvec>& island_region, const String& method);
+RcppExport SEXP _RST_u_update_beta(SEXP betaSEXP, SEXP thetaSEXP, SEXP ZSEXP, SEXP tau2SEXP, SEXP sig2SEXP, SEXP ASEXP, SEXP m0SEXP, SEXP island_regionSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -388,7 +390,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const double& >::type A(ASEXP);
     Rcpp::traits::input_parameter< const double& >::type m0(m0SEXP);
     Rcpp::traits::input_parameter< const arma::field<arma::uvec>& >::type island_region(island_regionSEXP);
-    rcpp_result_gen = Rcpp::wrap(u_update_beta(beta, theta, Z, tau2, sig2, A, m0, island_region));
+    Rcpp::traits::input_parameter< const String& >::type method(methodSEXP);
+    rcpp_result_gen = Rcpp::wrap(u_update_beta(beta, theta, Z, tau2, sig2, A, m0, island_region, method));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -413,10 +416,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_RST_mst_update_theta", (DL_FUNC) &_RST_mst_update_theta, 10},
     {"_RST_mst_update_rho", (DL_FUNC) &_RST_mst_update_rho, 9},
     {"_RST_u_update_Z", (DL_FUNC) &_RST_u_update_Z, 9},
-    {"_RST_u_update_sig2", (DL_FUNC) &_RST_u_update_sig2, 12},
-    {"_RST_u_update_tau2", (DL_FUNC) &_RST_u_update_tau2, 11},
+    {"_RST_u_update_sig2", (DL_FUNC) &_RST_u_update_sig2, 13},
+    {"_RST_u_update_tau2", (DL_FUNC) &_RST_u_update_tau2, 12},
     {"_RST_u_update_theta", (DL_FUNC) &_RST_u_update_theta, 10},
-    {"_RST_u_update_beta", (DL_FUNC) &_RST_u_update_beta, 8},
+    {"_RST_u_update_beta", (DL_FUNC) &_RST_u_update_beta, 9},
     {NULL, NULL, 0}
 };
 

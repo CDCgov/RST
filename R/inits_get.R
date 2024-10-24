@@ -9,12 +9,13 @@ get_inits_u = function(inits, data, island_id, method, .ignore_checks) {
   # Prepare initial values
   initmiss = NULL
   if (is.null(inits$theta)) {
+    theta = Y / n
     if (method == "pois") {
-      theta = log(Y / n)
+      theta = log(theta)
       theta[!is.finite(theta)] = log(sum(Y, na.rm = TRUE) / sum(n))
     }
     if (method == "binom") {
-      theta = logit(Y / n)
+      theta = logit(theta)
       theta[!is.finite(theta)] = logit(sum(Y, na.rm = TRUE) / sum(n))
     }
     inits$theta = theta

@@ -94,7 +94,7 @@ arma::cube mst_update_G(
   cube Ags(num_group, num_group, num_time, fill::zeros);
   Ags.each_slice() += Ag;
   vec r  = rho;
-  vec sr = sqrt(1 - pow(r, 2));
+  vec sr = sqrt(1 - pow(rho, 2));
   for (uword reg = 0; reg < num_region; reg++) {
     double num_adj = adjacency[reg].n_elem;
     mat Zmikt = Z.row(reg) - mean(get_regs(Z, adjacency[reg]), 0);

@@ -27,9 +27,9 @@ arma::field<arma::mat> Sig_eta_i(const arma::cube& G, const arma::vec& rho) {
   Sei(0, 0) = inv(G.slice(0));
   for (uword time = 1; time < num_time; time++) {
     mat Gi = inv(G.slice(time));
-    Sei(time - 1, time - 1) += (r  / sr).t() % (r / sr % Gi);
-    Sei(time    , time    )  = (1  / sr).t() % (1 / sr % Gi);
-    Sei(time - 1, time    )  = (-r / sr) % (1 / sr % Gi).t();
+    Sei(time - 1, time - 1) += ( r / sr).t() % (r / sr % Gi);
+    Sei(time    , time    )  = ( 1 / sr).t() % (1 / sr % Gi);
+    Sei(time - 1, time    )  = (-r / sr)     % (1 / sr % Gi).t();
     Sei(time    , time - 1)  = (-r / sr).t() % (1 / sr % Gi);
   }
   return Sei;

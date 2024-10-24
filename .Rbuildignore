@@ -1,4 +1,4 @@
 ^LICENSE$
-^\.git*$
+^\.git.*$
 ^\.vscode$
-^*\.md$
+^.*\.md$

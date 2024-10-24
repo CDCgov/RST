@@ -90,10 +90,10 @@ gibbs_u = function(name, dir, .show_plots) {
       }
 
       Z = u_update_Z(Z, sig2, theta, beta, tau2, adjacency, num_adj, island_region, island_id)
-      sig2 = u_update_sig2(sig2, Z, beta, tau2, adjacency, num_adj, island_region, num_island_region, A, m0, sig_a, sig_b)
-      tau2 = u_update_tau2(tau2, theta, beta, Z, sig2, num_island_region, island_id, A, m0, tau_a, tau_b)
+      sig2 = u_update_sig2(sig2, Z, beta, tau2, adjacency, num_adj, island_region, num_island_region, A, m0, sig_a, sig_b, method)
+      tau2 = u_update_tau2(tau2, theta, beta, Z, sig2, num_island_region, island_id, A, m0, tau_a, tau_b, method)
       theta = u_update_theta(theta, t_accept, Y, n, Z, beta, tau2, theta_sd, island_id, method)
-      beta = u_update_beta(beta, theta, Z, tau2, sig2, A, m0, island_region)
+      beta = u_update_beta(beta, theta, Z, tau2, sig2, A, m0, island_region, method)
 
       #### Save outputs ####
       if (it %% 10 == 0) {
