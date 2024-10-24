@@ -1,8 +1,3 @@
-  ---
-  title: "RSTr"
-  subtitle: "The Rate Stabilizing Tool: Gibbs Samplers for CAR-based Spatiotemporal Models"
-  ---
-
 # The RSTr R Package
 ## Introduction
 
